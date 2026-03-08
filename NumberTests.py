@@ -8,23 +8,41 @@ def isThreeOrFive(n):
   else:
     return False
 
+def getFactors(num):
+  """Returns a list of all facotrs of a given integer"""
+  factors = []
+  for f in range(1, num // 2 + 1):
+    if num % f == 0:
+      factors.append(f)
+
+  factors.append(num)
+  return factors
+
 def isPrime(p):
   """Returns boolean (True/False) if the value given is prime."""
+  if p <= 1:
+    return False
+  if p == 2:
+    return True
+  if isEven(p):
+    return False
 
+  for div in range(3, int(p ** 0.5) + 1, 2):
+    if p % div == 0:
+      return False
+    
   return True
 
 def isEven(n):
   """Returns boolean about given value being even."""
 
-  if n % 2 == 0:
-    return True
-  else:
-    return False
+  return n % 2 == 0
 
 def addNum(numList, num):
   """Adds the given number to the given list. Does not add duplicate values."""
 
-  numList.append(num)
+  if num not in numList:
+    numList.append(num)
 
 
 def fibonacciSequence(value):
@@ -52,6 +70,8 @@ def main():
 
   if isEven(num):
     print("%d is an even number" %(num))
+
+  
 
 
 if __name__ == '__main__':
